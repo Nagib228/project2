@@ -1,34 +1,31 @@
 "use strict";
 
-let num = 20; //глобальная переменная
+const str = 'text';
 
-function showFirstMessage(text){
-    console.log(text);   // function decloration
-    let num = 10; //локальная переменная
-}
+const arr = [1, 2, 4];
 
-showFirstMessage("Hello world!");
-console.log(num);
+//console.log(arr.length); // length это свойство
 
-// function calc(a, b){
-//     return (a + b);
-// }
+console.log(str[2]);
 
-// console.log(calc(4, 3));
+console.log(str.toLocaleUpperCase());//method
+console.log(str.toLocaleLowerCase()); //method
 
-function ret() {
-    let num = 50;
-//
-//
-    return num;
-}
-const anothernum = ret();
-console.log(anothernum);
+const fruit = 'Some fruit';
 
-let logger = function() {
-    console.log('Hello'); //function expression
-};
+console.log(fruit.indexOf('fruit')); //method (с какой позиции начинается, если -1 то нет такого куска)
 
-logger();
+const logg = 'Hello world!';
 
-const calc = (a, b) => a + b; //стрелочная фукнция
+console.log(logg.slice(6, 11)); // method (вырезка без включения) c 1 или 2 аргументами
+
+console.log(logg.substring(6, 11)); //method (тоже что и slice, но не поддерживает отрицательные значения)
+
+console.log(logg.substr(6, 5)); // method (сколько символов,начиная с 7 вырезать(сейчас стоит 5))
+
+const num = 12.2;
+console.log(Math.round(num)); //method округления чисел
+
+const test = "12.2px";
+console.log(parseInt(test)); //method перевода в тип Int
+console.log(parseFloat(test)); //method перевода в тип Float
