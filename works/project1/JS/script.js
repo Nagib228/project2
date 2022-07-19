@@ -1,31 +1,73 @@
 "use strict";
 
-const str = 'text';
+let numberOfFiles;
 
-const arr = [1, 2, 4];
 
-//console.log(arr.length); // length это свойство
+function start() {
+   numberOfFiles = prompt("Сколько фильмов Вы посмотрели?", "");
 
-console.log(str[2]);
+    while (numberOfFiles == '' || numberOfFiles == null || isNaN(numberOfFiles)) {
+        numberOfFiles = prompt("Сколько фильмов Вы посмотрели?", "");
+    }
+}
 
-console.log(str.toLocaleUpperCase());//method
-console.log(str.toLocaleLowerCase()); //method
+start();
 
-const fruit = 'Some fruit';
+const personalMovieDB = {
+    count: numberOfFiles,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+};
 
-console.log(fruit.indexOf('fruit')); //method (с какой позиции начинается, если -1 то нет такого куска)
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt("Один из последних просмотренных фильмов?", ""),
+              b = prompt("На сколько оцените его?", "");
+        
+        if (a != null && b != null && a != '' && b != '' && a.length < 50){
+             personalMovieDB.movies[a] = b; 
+             console.log("Done");
+     } else {
+            console.log('error');
+            i--;
+            }
+    
+    }
+}
 
-const logg = 'Hello world!';
+rememberMyFilms();
 
-console.log(logg.slice(6, 11)); // method (вырезка без включения) c 1 или 2 аргументами
 
-console.log(logg.substring(6, 11)); //method (тоже что и slice, но не поддерживает отрицательные значения)
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10){
+        console.log("Просмотрено довольно мало фильмов");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
+        console.log("Вы классичесий зритель");
+    } else if (personalMovieDB.count >= 30){
+        console.log("Вы киноман");
+    } else {
+        console.log("Произошла ошибка");
+    }
+    
+}
 
-console.log(logg.substr(6, 5)); // method (сколько символов,начиная с 7 вырезать(сейчас стоит 5))
+detectPersonalLevel();
 
-const num = 12.2;
-console.log(Math.round(num)); //method округления чисел
+function showMyDB (hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
 
-const test = "12.2px";
-console.log(parseInt(test)); //method перевода в тип Int
-console.log(parseFloat(test)); //method перевода в тип Float
+showMyDB(personalMovieDB.privat);
+
+function writeYourGenres() {
+    for (let i = 1; i <= 3; i++) {
+        const genre = prompt(`Ваш любимый жанр под номером ${i}`);
+        personalMovieDB.genres[i - 1] = genre;
+    }
+}
+
+writeYourGenres();
