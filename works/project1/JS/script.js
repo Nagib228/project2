@@ -2,7 +2,6 @@
 
 let numberOfFiles;
 
-
 function start() {
    numberOfFiles = prompt("Сколько фильмов Вы посмотрели?", "");
 
