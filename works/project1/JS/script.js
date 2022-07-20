@@ -1,72 +1,26 @@
 "use strict";
 
-let numberOfFiles;
-
-function start() {
-   numberOfFiles = prompt("Сколько фильмов Вы посмотрели?", "");
-
-    while (numberOfFiles == '' || numberOfFiles == null || isNaN(numberOfFiles)) {
-        numberOfFiles = prompt("Сколько фильмов Вы посмотрели?", "");
-    }
+function first() {
+    // Do something
+    setTimeout(function(){
+        console.log(1); // после задержки вывод 1
+    }, 500);  //задержка 500 ms
 }
 
-start();
-
-const personalMovieDB = {
-    count: numberOfFiles,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
-};
-
-function rememberMyFilms() {
-    for (let i = 0; i < 2; i++) {
-        const a = prompt("Один из последних просмотренных фильмов?", ""),
-              b = prompt("На сколько оцените его?", "");
-        
-        if (a != null && b != null && a != '' && b != '' && a.length < 50){
-             personalMovieDB.movies[a] = b; 
-             console.log("Done");
-     } else {
-            console.log('error');
-            i--;
-            }
-    
-    }
+function second() {
+    console.log(2);
 }
 
-rememberMyFilms();
+first();
+second(); //результаты в разное время (из-за задержки)
 
-
-function detectPersonalLevel() {
-    if (personalMovieDB.count < 10){
-        console.log("Просмотрено довольно мало фильмов");
-    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
-        console.log("Вы классичесий зритель");
-    } else if (personalMovieDB.count >= 30){
-        console.log("Вы киноман");
-    } else {
-        console.log("Произошла ошибка");
-    }
-    
+function learnJS(lang, callback) {
+    console.log(`Я учу: ${lang}`);
+    callback();  //callback function (последовательность)
 }
 
-detectPersonalLevel();
-
-function showMyDB (hidden) {
-    if (!hidden) {
-        console.log(personalMovieDB);
-    }
+function done() {
+    console.log(`Я прошёл этот урок!`);
 }
 
-showMyDB(personalMovieDB.privat);
-
-function writeYourGenres() {
-    for (let i = 1; i <= 3; i++) {
-        const genre = prompt(`Ваш любимый жанр под номером ${i}`);
-        personalMovieDB.genres[i - 1] = genre;
-    }
-}
-
-writeYourGenres();
+learnJS(`JavaScript`, done); //выполни done тогда,когды ты дойдёшь до callback (встаёт на место callback)
