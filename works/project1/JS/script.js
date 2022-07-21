@@ -1,26 +1,45 @@
 "use strict";
 
-function first() {
-    // Do something
-    setTimeout(function(){
-        console.log(1); // после задержки вывод 1
-    }, 500);  //задержка 500 ms
-}
+const options = {
+    name: 'test',   // свойство: значение
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: 'black',
+        bg: 'red'
+    },
+    makeTest: function(){
+        console.log(`Test`);  //метод в options
+    }
+};
 
-function second() {
-    console.log(2);
-}
+options.makeTest();  //вызов функции и метода
 
-first();
-second(); //результаты в разное время (из-за задержки)
+const {border, bg} = options.colors;  //ДЕСТРУКТУРИЗАЦИЯ ОБЪЕКТА
+console.log(border);
 
-function learnJS(lang, callback) {
-    console.log(`Я учу: ${lang}`);
-    callback();  //callback function (последовательность)
-}
+//console.log(options['colors']['border']);
 
-function done() {
-    console.log(`Я прошёл этот урок!`);
-}
+// delete options.name;  //удаление свойства
 
-learnJS(`JavaScript`, done); //выполни done тогда,когды ты дойдёшь до callback (встаёт на место callback)
+// console.log(options);
+
+// let counter = 0;
+
+// for (let key in options){     //копает options, его свойства = key столько раз,сколько свойств
+//     if (typeof(options[key]) == `object`) {
+//         for (let i  in options[key]){
+//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+//             counter++;
+//         }
+//     } else {
+//         console.log(`Свойство ${key} имеет значение ${options[key]}`);
+//         counter++;
+//     }
+// }
+// console.log(counter);
+
+console.log(Object.keys(options));  //массив с ключами (свойствами)
+
+console.log(Object.keys(options).length);  //количество эл-тов в массиве
+
